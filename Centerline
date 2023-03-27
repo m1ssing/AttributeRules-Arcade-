@@ -1,0 +1,12 @@
+var masterRoads = FeatureSetByName($datastore,
+    "Horizon.DBO.Address_MasterRoads", ["fullname"], false);
+    var nameArray = [];
+    for (var road in masterRoads){
+    var masterName = road.fullname
+    Push(nameArray, Upper(masterName))
+    }
+    var check = Includes(nameArray, Upper($feature.fullname))
+    IF (check==false){
+    return false;
+    }
+    return true;

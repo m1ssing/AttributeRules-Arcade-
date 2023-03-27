@@ -1,0 +1,14 @@
+var fs1 = FeatureSetByName($datastore, "Horizon.DBO.TempHydrantMeters");
+for (var row1 in fs1){
+var meterID = row1.MeterNumber
+var meterStatus = row1.Status
+var filteredfs1 = Filter(fs1, "MeterNumber = @meterID AND Status = @meterStatus")
+
+for(var row2 in filteredfs1){
+var filteredStatus = row2.Status
+IF ((Count(filteredfs1)>1) && (filteredStatus == "Active")){
+return false;
+}            
+}
+}
+return true;

@@ -1,0 +1,7 @@
+var system = $feature.SystemOwned_Material;
+var customer = $feature.CustomerOwned_Material;
+var prev = $feature.PreviousMaterial;
+
+var x = IIF(system == 'Lead' || customer =='Lead', 'Lead', IIF(Find('Non-Lead', system)<=0 && customer == 'Galvanized' && prev == 'No', 'Galvanized Requiring Replacement', IIF(Find('Non-Lead', system)>=0 && Find('Non-Lead', customer)>=0 || customer == 'Galvanized', 'Non-Lead', IIF(system == 'Unknown' || customer == 'Unknown', 'Lead Status Unknown', 'Nothing Works'))));
+
+return x

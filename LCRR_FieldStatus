@@ -1,0 +1,9 @@
+var fs1 = FeatureSetByName($datastore, "Horizon.DBO.LCRRStudy");
+
+var attach = Count(Attachments($feature));
+var system = $feature.SystemOwned_Material;
+var customer = $feature.CustomerOwned_Material;
+
+var x = IIF(system == 'Post-1989' && customer == 'Post-1989', 'Completed', IIF(attach > 3, 'Completed', 'Field Work Required'));
+
+return x
